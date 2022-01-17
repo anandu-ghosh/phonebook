@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Address Book | Login</title>
-    <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./assets/fontawesome/css/all.css" rel="stylesheet" />
-    <link href="./assets/css/custom.css" rel="stylesheet" />
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg nav-bar">
-        <a class="navbar-brand" href="#">ADDRESS BOOK</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            
-          </ul>
-          <div class="form-inline my-2 my-lg-0">
-            <a href="register.cfm" class="mr-sm-5"><i class="fas fa-user-alt"></i> Sign Up</a>
-            <a href="index.cfm" class="my-sm-2 mr-sm-3"><i class="fas fa-sign-in-alt"></i> Login</a>
-          </div>
-        </div>
-      </nav>
-             
+<cfinclude  template = "include/header.cfm"  runOnce = "true"> 
         <div class="container box-section">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-9">
@@ -37,18 +9,20 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-data">
-                                    <div class="text-center d-flex flex-column"> <h1>Sign Up</h1></div>
-                                    <div class="forms-inputs mb-5"><input class="text-field" autocomplete="off" type="text" placeholder="Full Name"/>
-                                    </div>
-                                    <div class="forms-inputs mb-5">  <input class="text-field" autocomplete="off" type="Email ID" placeholder="Password"/>
-                                    </div>
-                                    <div class="forms-inputs mb-5">  <input class="text-field" autocomplete="off" type="text" placeholder="Username"/>
-                                    </div>
-                                    <div class="forms-inputs mb-5">  <input class="text-field" autocomplete="off" type="Password" placeholder="Password"/>
-                                    </div>
-                                    <div class="forms-inputs mb-5">  <input class="text-field" autocomplete="off" type="Password" placeholder="Conform Password"/>
-                                    </div>
-                                    <div class="mb-3"> <button class="btn btn-main-page w-100 ">Login</button> </div>
+                                  <form method="post" name="registerForm" action="" onsubmit="return validateRegisterForm()">
+                                      <div class="text-center d-flex flex-column"> <h1>Sign Up</h1></div>
+                                      <div class="forms-inputs mb-5"><input name="fullName" class="text-field" autocomplete="off" type="text" placeholder="Full Name" />
+                                      </div>
+                                      <div class="forms-inputs mb-5">  <input name="emailId" class="text-field" autocomplete="off" type="email" placeholder="Email Id" />
+                                      </div>
+                                      <div class="forms-inputs mb-5">  <input name="userName" class="text-field" autocomplete="off" type="text" placeholder="Username" required/>
+                                      </div>
+                                      <div class="forms-inputs mb-5">  <input name="passWord" class="text-field" autocomplete="off" type="password" placeholder="Password" required/>
+                                      </div>
+                                      <div class="forms-inputs mb-5">  <input name="conformPassWord" class="text-field" autocomplete="off" type="password" placeholder="Conform Password" required/>
+                                      </div>
+                                      <div class="mb-3"> <button type="submit" name="registerButton" class="btn btn-main-page w-100 ">Sign Up</button> </div>
+                                  </form>    
                                 </div>
                             </div>
                         </div>
@@ -56,11 +30,10 @@
                 </div>
             </div>
         </div>
-           
+            <cfif structKeyExists(form, "registerButton")>
+                <cfinvoke component="cfc.register"  method="insertData" returnvariable="message">
+                <cfoutput>#message#</cfoutput>
+            </cfif>
 
-     
       
-      <script src="./assets/js/jquery.js"></script>
-      <script src="./assets/js/bootstrap.min.js"></script>
-</body>
-</html>
+<cfinclude  template = "include/footer.cfm"  runOnce = "true">
