@@ -45,3 +45,55 @@
     color: #f83535;
     margin: 10px;
 }
+
+.top-nav {
+    background-color: rgb(237 237 235);
+    height:80px;
+    
+}
+
+.side-profile {
+    background-color: rgb(237 237 235);
+    height:300px;
+    margin-top: 60px;
+}
+
+.table-view{
+    background-color: rgb(237 237 235);
+    min-height:300px;
+    margin-top: 60px;
+    height:auto;
+    overflow-x: scroll;
+}
+
+.fa-file-pdf {
+    font-size: 30px;
+    color: rgb(231, 65, 65);
+}
+
+.fa-file-excel {
+    font-size: 30px;
+    color: rgb(22, 190, 95);
+}
+
+.fa-print {
+    font-size: 30px;
+    color: rgb(26, 23, 23);
+}
+
+.profile-section {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 29px;
+}
+
+.contact-create-btn{
+    border-radius: 15px;
+    height: 40px;
+    background: #55b8ff;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+}
