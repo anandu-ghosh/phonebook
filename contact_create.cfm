@@ -9,15 +9,15 @@
       </div>
       <div class="modal-body">
 
-      <form>
+      <form method="post" action="" enctype="multipart/form-data" >
         <div class="row">
         <div class="col-md-12">
 				<h3>Personal Contact</h3><hr>
 			</div>
             <div class="col-md-2">
                 <label  for="tittle">Title*</label>
-                <select class="form-control" id="title" name="title">
-                    <option>Select</option>
+                <select  name="title" class="form-control" id="title" required>
+                    <option value="">Select</option>
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Mrs</option>
                     <option value="Miss">Miss</option>
@@ -26,31 +26,31 @@
             </div>
             <div class="col-md-5">
                 <label  for="firstName">First Name*</label>
-                <input type="text" id="firstName" class="form-control">
+                <input name="fname" type="text" id="firstName" class="form-control" required>
             </div>
             <div class="col-md-5">
                 <label for="LastName">Last Name*</label>
-                <input type="text" id="LastName" class="form-control">
+                <input name="lname" type="text" id="LastName" class="form-control" required>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-md-6">
                 <label for="gender">Gender*</label>
-                <select class="form-control" id="gender" name="gender">
-                    <option>Select</option>
+                <select name="gender" class="form-control" id="gender" required>
+                    <option value="">Select</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="DOB">Date Of Birth*</label>
-                <input type="date" id="DOB" class="form-control">
+                <input name="dob" type="date" id="DOB" class="form-control" required>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-md-6">
                 <label for="pImage">Upload Photo</label>
-                <input type="file" id="pImage" class="form-control">
+                <input name="file" type="file" id="pImage" class="form-control" />
             </div>
         </div>
         <div class="row mt-4">
@@ -59,20 +59,33 @@
 			</div>
             <div class="col-md-6">
                 <label for="address">Address</label>
-                <input type="text" id="address" class="form-control">
+                <input name="address" type="text" id="address" class="form-control" />
             </div>
             <div class="col-md-6">
                 <label for="street">Street</label>
-                <input type="text" id="street" class="form-control">
+                <input name="street" type="text" id="street" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label for="email">Email*</label>
+                <input name="email" type="email" id="email" class="form-control" required/>
+            </div>
+            <div class="col-md-6">
+                <label for="phone">Phone*</label>
+                <input name="phone" type="text" id="phone" class="form-control" required/>
             </div>
         </div>
-      </form>
+      
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button name="create_contact" type="submit" class="btn btn-primary">Save</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
+
+<cfif structKeyExists(form, "create_contact")>
+  <cfinvoke component="cfc.userdata"  method="createContact" returnvariable="message">
+</cfif>
