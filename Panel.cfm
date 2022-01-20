@@ -9,9 +9,9 @@
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <div class="navbar-nav mr-auto mt-2 mt-lg-0"></div>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="" class="my-sm-2 mr-sm-3"><i class="far fa-file-pdf"></i></a>
-                            <a href="" class="my-sm-2 mr-sm-3"><i class="far fa-file-excel"></i></a>
-                            <a href="" class="mr-sm-5"><i class="fas fa-print"></i></a>
+                            <a href="contact_pdf.cfm" class="my-sm-2 mr-sm-3"><i class="far fa-file-pdf"></i></a>
+                            <a href="contact_excel.cfm" class="my-sm-2 mr-sm-3"><i class="far fa-file-excel"></i></a>
+                            <button onclick="printDiv('tableDataView')" class="mr-sm-5"><i class="fas fa-print"></i></button>
                         </div>
                     </div>
                 </div>
@@ -27,9 +27,9 @@
                
             </div>
             <div class="col-md-1"></div>
-            <div class="col-md-8 table-view">
+            <div class="col-md-8 table-view" id="tableDataView">
             <cfinvoke component="cfc.userdata"  method="selectContact" returnvariable="userData">
-                <table class="table">
+                <table class="table" >
   <thead>
     <tr>
       <th scope="col"></th>
@@ -239,6 +239,19 @@
 </cfif>
 
     <cfinclude  template = "contact_create.cfm"  runOnce = "true">
+
+    <script>
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+    </script>
     <cfinclude  template = "include/footer.cfm"  runOnce = "true">
 <cfelse>
     <cflocation url="./index.cfm" >

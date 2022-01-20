@@ -56,3 +56,5 @@ function validateRegisterForm() {
       return false;
     }
   }
+
+  
