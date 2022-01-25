@@ -20,7 +20,7 @@
                                     </form>    
                                 </div>
                                 <div class="success-data">
-                                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">Or Sign in Using <br> <i class="fab fa-facebook"></i><i class="fab fa-google-plus"></i> <br>
+                                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">Or Sign in Using <br><form method="post"> <button type="submit" name="face-btn" class="social-btn"><i class="fab fa-facebook"></i></button> <button type="submit" name="google-btn" class="social-btn"><i class="fab fa-google-plus"></i></button></form><br>
                                     Don't have an account? <a href="">Register Here</a>
                                     </span> </div>
                                 </div>
@@ -34,6 +34,13 @@
         <cfif structKeyExists(form, "loginButton")>
                 <cfinvoke component="cfc.login"  method="loginData" returnvariable="message">
                 <cfoutput>#message#</cfoutput>
-            </cfif>
+        </cfif>
+
+        <cfif structKeyExists(form, "google-btn")>
+           
+                <cflocation  url="cfc/google.cfm">
+                        
+                        
+        </cfif>
         
 <cfinclude  template = "include/footer.cfm"  runOnce = "true">          
