@@ -63,4 +63,32 @@
 
     </cffunction>
 
+    <cffunction  name="facebookLogin" access="remote">
+          <cfargument name="email" type="string" required="true" />
+        <cfargument name="first_name" type="string" required="true" />
+        <cfargument name="last_name" type="string" required="true" />
+
+         <cfquery  datasource="coldfusion" result="outputquery" name="checkquery">
+                SELECT * FROM contact_book_user WHERE email="#email#"
+            </cfquery>
+
+            <cfif outputquery.RECORDCOUNT GT 0>
+                <cfset Session.userId = checkquery.id>
+                 <cfset Session.loggedin = true />
+                 <cfset Session.logwith = "facebook" />
+                  <cflocation  url="../panel.cfm" addtoken="false">
+                    
+            <cfelse>
+                 <cfquery datasource="coldfusion" result="result">
+                    INSERT INTO contact_book_user (fullname, email, username, password) VALUES (<cfqueryparam value="#first_name#">, <cfqueryparam value="#email#">, <cfqueryparam value="#email#">, <cfqueryparam value="">)
+                </cfquery>
+                <cfset Session.userId = result.generatedkey>
+                 <cfset Session.loggedin = true />
+                 <cfset Session.logwith = "facebook" />
+                   <cflocation  url="../panel.cfm" addtoken="false">
+            </cfif> 
+
+
+    </cffunction> 
+
 </cfcomponent>

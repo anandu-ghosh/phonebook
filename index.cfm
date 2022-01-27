@@ -1,3 +1,7 @@
+<cfif StructKeyExists(session, "loggedin") >
+     <cflocation url="panel.cfm" >
+<cfelse>
+ 
 <cfinclude  template = "include/header.cfm"  runOnce = "true">
              
         <div class="container box-section">
@@ -20,8 +24,8 @@
                                     </form>    
                                 </div>
                                 <div class="success-data">
-                                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">Or Sign in Using <br><form method="post"> <button type="submit" name="face-btn" class="social-btn"><i class="fab fa-facebook"></i></button> <button type="submit" name="google-btn" class="social-btn"><i class="fab fa-google-plus"></i></button></form><br>
-                                    Don't have an account? <a href="">Register Here</a>
+                                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">Or Sign in Using <br><form method="post"> <button  onClick="FbLogin()" name="face-btn" class="social-btn"><i class="fab fa-facebook"></i></button> <button type="submit" name="google-btn" class="social-btn"><i class="fab fa-google-plus"></i></button></form><br>
+                                    Don't have an account? <a href="register.cfm">Register Here</a>
                                     </span> </div>
                                 </div>
                             </div>
@@ -42,5 +46,62 @@
                         
                         
         </cfif>
-        
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '915046725867308',
+      xfbml      : true,
+      version    : 'v12.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+
+    function FbLogin() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    getFbUserData();
+                } else {
+                    document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+                }
+            }, {scope: 'email'});
+        }
+      
+        function getFbUserData(){
+            FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+            function (response) {                
+                saveUserData(response);                
+            });
+        }
+
+        function saveUserData(userData){
+          $.ajax({
+              url: "cfc/login.cfc",
+              type: "post", 
+              dataType: "json",
+              data: {
+                  method: "facebookLogin",
+                  email: userData.email,
+                  first_name: userData.first_name,
+                  last_name: userData.last_name
+              },
+              success: function (data){
+                  location.reload();
+              }
+          });
+        }
+
+</script>
+
 <cfinclude  template = "include/footer.cfm"  runOnce = "true">          
+  
+</cfif>

@@ -10,7 +10,9 @@
     <cffunction  name="createContact" access="public">
 
 
-        <cfif form.file != "">
+
+
+<cfif form.file != "">
             <cffile action="upload"
                 fileField="file"
                 destination="F:\ColdFusion2021\cfusion\wwwroot\phonebook\assets\userImage"
@@ -20,11 +22,18 @@
         <cfelse>
             <cfset img = "">
         </cfif>
-        <cfquery datasource="coldfusion">
-            INSERT INTO contact_number (user_id, title, fname, lname, gender, dob, image, address, street, email, phone) VALUES (<cfqueryparam value="#Session.userId#">, <cfqueryparam value="#form.title#">, <cfqueryparam value="#form.fname#">, <cfqueryparam value="#form.lname#">, <cfqueryparam value="#form.gender#">, <cfqueryparam value="#form.dob#">, <cfqueryparam value="#img#">, <cfqueryparam value="#form.address#">, <cfqueryparam value="#form.street#">, <cfqueryparam value="#form.email#">, <cfqueryparam value="#form.phone#">)
-        </cfquery>
+    
+        <cftransaction>
+            <cfset CreateContact = entityNew("contacts", {UserId : Session.userId, Title : form.title, FirstName : form.fname, LastName : form.lname, Gender : form.gender, DateBirth : form.dob, Image : img, Address : form.address, Street : form.street,
+            Email : form.email, Phone : form.phone})>
+            <cfset entitySave(CreateContact)>
+        </cftransaction>      
+        <cflocation url="panel.cfm" addtoken="no">
 
-        <cflocation url="./panel.cfm" >
+
+
+
+
     </cffunction>
 
     <cffunction  name="selectContact" access="public">
