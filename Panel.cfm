@@ -49,7 +49,7 @@
       <td>#userData.email#</td>
       <td>#userData.phone#</td>
       <td><button class="btn btn-primary" data-toggle="modal" data-target=".exampleModal-#userData.id#" >Edit</button></td>
-      <td><a href="include/delete.cfm?id=#userData.id#" class="btn btn-primary">Delete</a></td>
+      <td><a href="delete.cfm?id=#userData.id#" class="btn btn-primary">Delete</a></td>
       <td><button class="btn btn-primary" data-toggle="modal" data-target=".viewModal-#userData.id#">View</button></td>
         <div class="modal fade bd-example-modal-lg exampleModal-#userData.id#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">

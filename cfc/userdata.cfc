@@ -73,4 +73,16 @@
          <cflocation url="./panel.cfm" >
     </cffunction>
 
+    <cffunction  name="deleteUser" access="public">
+        <cfargument name="userId" type="any" required="true" />
+
+        <cfquery datasource="coldfusion" name="delete_page">
+            DELETE 
+            FROM contact_number
+            WHERE id = #userId#
+        </cfquery>
+
+        <cfreturn>
+    </cffunction>
+
 </cfcomponent>
