@@ -29,11 +29,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-            <cfif structKeyExists(form, "registerButton")>
-                <cfinvoke component="cfc.register"  method="insertData" returnvariable="message">
-                <cfoutput>#message#</cfoutput>
-            </cfif>
-
-      
+        </div>  
+<cfif structKeyExists(form, "registerButton")>
+    <cfinvoke component="cfc.register"  method="insertData" returnvariable="message">
+    <cfoutput>#message#</cfoutput>
+</cfif>
 <cfinclude  template = "include/footer.cfm"  runOnce = "true">

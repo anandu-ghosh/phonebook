@@ -1,5 +1,4 @@
-<cfif StructKeyExists(session, "loggedin") >
-    <cfinclude  template = "include/header.cfm"  runOnce = "true">
+<cfinclude  template = "include/header.cfm"  runOnce = "true">
 
     <div class="container box-section">
         <div class="row d-flex justify-content-center">
@@ -253,6 +252,3 @@
 }
     </script>
     <cfinclude  template = "include/footer.cfm"  runOnce = "true">
-<cfelse>
-    <cflocation url="./index.cfm" >
-</cfif>

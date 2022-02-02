@@ -1,7 +1,3 @@
-<cfif StructKeyExists(session, "loggedin") >
-     <cflocation url="panel.cfm" >
-<cfelse>
- 
 <cfinclude  template = "include/header.cfm"  runOnce = "true">
              
         <div class="container box-section">
@@ -36,15 +32,12 @@
         </div>
 
         <cfif structKeyExists(form, "loginButton")>
-                <cfinvoke component="cfc.login"  method="loginData" returnvariable="message">
-                <cfoutput>#message#</cfoutput>
+            <cfinvoke component="cfc.login"  method="loginData" returnvariable="message">
+            <cfoutput>#message#</cfoutput>
         </cfif>
 
         <cfif structKeyExists(form, "google-btn")>
-           
-                <cflocation  url="cfc/google.cfm">
-                        
-                        
+            <cflocation  url="cfc/google.cfm">           
         </cfif>
 
 <script>
@@ -103,5 +96,3 @@
 </script>
 
 <cfinclude  template = "include/footer.cfm"  runOnce = "true">          
-  
-</cfif>

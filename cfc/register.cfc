@@ -6,7 +6,7 @@
         <cfreturn variable>
     </cfif>
 
-     <cfif form.emailId eq "">
+     <cfif form.emailId eq "" >
         <cfset variable = "Please fill the Email field">
         <cfreturn variable>
     </cfif>
@@ -21,11 +21,33 @@
         <cfreturn variable>
     </cfif>
 
-    <cfquery datasource="coldfusion">
-        INSERT INTO contact_book_user (fullname, email, username, password) VALUES (<cfqueryparam value="#form.fullName#">, <cfqueryparam value="#form.emailId#">, <cfqueryparam value="#form.userName#">, <cfqueryparam value="#form.passWord#">)
+    <cfquery name="emailcheck" datasource="coldfusion">
+        select email 
+        from contact_book_user
+        where email = <cfqueryparam cfsqltype="cf_sql_varchar" value="#form.emailId#" >
     </cfquery>
-         <cflocation url="./index.cfm" >
-       <cfset variable = "save the data">
+    <cfif emailcheck.recordcount >
+        <cfset variable = "already existing this email">
         <cfreturn variable>
+    <cfelse>
+        <cfquery datasource="coldfusion" result="result">
+            INSERT INTO contact_book_user (fullname, email, username, password) VALUES (
+                <cfqueryparam value="#form.fullName#" cfsqltype="cf_sql_varchar">, 
+                <cfqueryparam value="#form.emailId#" cfsqltype="cf_sql_varchar">, 
+                <cfqueryparam value="#form.userName#" cfsqltype="cf_sql_varchar">, 
+                <cfqueryparam value="#form.passWord#" cfsqltype="cf_sql_varchar">)
+        </cfquery>
+        <cfif result.generatedkey>
+             <cfset variable = "save the data">
+            <cflocation url="./index.cfm" >
+        <cfelse>
+            <cfset variable = "Please try after some time...">
+            <cfreturn variable>
+        </cfif>
+        
+       
+    </cfif>
+
+    
     </cffunction>
 </cfcomponent>
