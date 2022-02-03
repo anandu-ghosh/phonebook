@@ -26,7 +26,7 @@
             <cfset CreateContact = entityNew("contacts", {UserId : Session.userId, Title : form.title, FirstName : form.fname, LastName : form.lname, Gender : form.gender, DateBirth : form.dob, Image : img, Address : form.address, Street : form.street,
             Email : form.email, Phone : form.phone})>
             <cfset entitySave(CreateContact)>  
-        <cflocation url="panel.cfm" addtoken="no">
+            <cflocation url="panel.cfm" addtoken="no">
 
     </cffunction>
 

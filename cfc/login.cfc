@@ -34,12 +34,12 @@
     <cffunction  name="googleLogin" access="public">
 
             <cfoauth
-            type="Google"
+            type="Google" 
             clientid="1016945913441-82je7j44217t7ame4atp8i4c0qh3k0hu.apps.googleusercontent.com" 
             scope="https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile"
             secretkey="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" 
             result="res"  
-            redirecturi="http://127.0.0.1:8500/phonebook/cfc/google.cfm">
+            redirecturi="http://127.0.0.1:8500/phonebook/google.cfm">
 
 
             <cfquery  datasource="coldfusion" result="outputquery" name="checkquery">

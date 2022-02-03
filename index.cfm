@@ -37,7 +37,7 @@
         </cfif>
 
         <cfif structKeyExists(form, "google-btn")>
-            <cflocation  url="cfc/google.cfm">           
+            <cflocation  url="google.cfm">           
         </cfif>
 
 <script>
