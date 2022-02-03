@@ -9,10 +9,7 @@
 
     <cffunction  name="createContact" access="public">
 
-
-
-
-<cfif form.file != "">
+        <cfif form.file != "">
             <cffile action="upload"
                 fileField="file"
                 destination="F:\ColdFusion2021\cfusion\wwwroot\phonebook\assets\userImage"

@@ -53,7 +53,11 @@
                     
             <cfelse>
                  <cfquery datasource="coldfusion" result="result">
-                    INSERT INTO contact_book_user (fullname, email, username, password) VALUES (<cfqueryparam value="#res.other.given_name#">, <cfqueryparam value="#res.other.email#">, <cfqueryparam value="#res.other.email#">, <cfqueryparam value="">)
+                    INSERT INTO contact_book_user (fullname, email, username, password) VALUES (
+                        <cfqueryparam value="#res.other.given_name#">, 
+                        <cfqueryparam value="#res.other.email#">, 
+                        <cfqueryparam value="#res.other.email#">, 
+                        <cfqueryparam value="">)
                 </cfquery>
                 <cfset Session.userId = result.generatedkey>
                  <cfset Session.loggedin = true />
@@ -80,7 +84,11 @@
                     
             <cfelse>
                  <cfquery datasource="coldfusion" result="result">
-                    INSERT INTO contact_book_user (fullname, email, username, password) VALUES (<cfqueryparam value="#first_name#">, <cfqueryparam value="#email#">, <cfqueryparam value="#email#">, <cfqueryparam value="">)
+                    INSERT INTO contact_book_user (fullname, email, username, password) VALUES (
+                        <cfqueryparam value="#first_name#">, 
+                        <cfqueryparam value="#email#">, 
+                        <cfqueryparam value="#email#">, 
+                        <cfqueryparam value="">)
                 </cfquery>
                 <cfset Session.userId = result.generatedkey>
                  <cfset Session.loggedin = true />

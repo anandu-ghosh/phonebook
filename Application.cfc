@@ -23,15 +23,14 @@ component {
     }
 
     function onError(Exception,EventName){
-        writeOutput('<h2>An unexpected error occurred.</h2>
+        writeOutput('<center><h1>An error occurred</h1>
 		<p>Please Contact the developer</p>
-		<p>Error : #EventName#</p>
-		<p>Error details: #Exception.message#<br>');
+		<p>Error details: #Exception.message#</p></center>');
 		exit;
     }
 
     function onMissingTemplate(targetPage){
-            writeOutput('<center><h2>This Page is not avilable.</h2>
+        writeOutput('<center><h1>This Page is not avilable.</h1>
 		<p>Please go back:</p></center>');
 		exit;
     }

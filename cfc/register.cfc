@@ -38,7 +38,6 @@
                 <cfqueryparam value="#form.passWord#" cfsqltype="cf_sql_varchar">)
         </cfquery>
         <cfif result.generatedkey>
-             <cfset variable = "save the data">
             <cflocation url="./index.cfm" >
         <cfelse>
             <cfset variable = "Please try after some time...">
