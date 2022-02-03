@@ -8,13 +8,19 @@ component {
     this.ormSettings = { logsql : true };
 
    function onRequestStart(requestname){ 
+
         if(!structKeyExists(session, "userId") or !structKeyExists(session, "loggedin") ){
             if(!(find("index",requestname) > 0 or find("register",requestname) > 0 or find("google",requestname) > 0)){
                location("/phonebook/index.cfm",false);
             }
-        }else{
-                location("/phonebook/panel.cfm",false);
+        }
+
+        if(structKeyExists(session, "userId") or structKeyExists(session, "loggedin") ){
+            if(!(find("panel",requestname) > 0 or find("contact_pdf",requestname) > 0 or find("contact_excel",requestname) > 0 or find("cfc/logout",requestname) > 0 or find("delete",requestname) > 0)){
+               location("/phonebook/panel.cfm",false);
+            }
         }
     }
+
 
 }
