@@ -1,2 +1,2 @@
 <cfinvoke component="cfc.login"  method="googleLogin" returnvariable="message" />
-               <cflocation url ="http://127.0.0.1:8500/phonebook/panel.cfm">
+<cflocation url ="http://127.0.0.1:8500/phonebook/panel.cfm">

@@ -10,7 +10,8 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-data">
-                                    <form method="post" name="loginForm" action="" onsubmit="return validateLoginForm()">
+                                
+                                    <form method="post" name="loginForm" action="cfc/login.cfc?method=loginData" onsubmit="return validateLoginForm()">
                                         <div class="text-center d-flex flex-column"> <h1>Login</h1></div>
                                         <div class="forms-inputs mb-5"><input name="username" class="text-field" autocomplete="off" type="text" placeholder="Username"/>
                                         </div>
@@ -31,11 +32,7 @@
             </div>
         </div>
 
-        <cfif structKeyExists(form, "loginButton")>
-            <cfinvoke component="cfc.login"  method="loginData" returnvariable="message">
-            <cfoutput>#message#</cfoutput>
-        </cfif>
-
+       
         <cfif structKeyExists(form, "google-btn")>
             <cflocation  url="google.cfm">           
         </cfif>

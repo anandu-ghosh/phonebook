@@ -13,28 +13,14 @@
     </cfoutput>>
 	
 	<cfset filename = expandPath("./myexcel.xls")>
-	<!---
-	<cfspreadsheet action="write" query="q" filename="#filename#" overwrite="true">
-	--->
-	<!--- Make a spreadsheet object --->
 	<cfset s = spreadsheetNew()>
-	<!--- Add header row --->
 	<cfset spreadsheetAddRow(s, "Name,Address,Gender,DOB,Email,Phone")>
-	<!--- format header --->	
 	<cfset spreadsheetFormatRow(s,
 			{
 				bold=true,
 				fontsize=10
 			}, 
 			1)>
-	
-	<!--- Add query --->
 	<cfset spreadsheetAddRows(s, q)>
-<!---
-	<cfset spreadsheetWrite(s, filename, true)>
-		
-	Your spreadsheet is ready. You may download it <a href="myexcel.xls">here</a>.
---->
-
 	<cfheader name="content-disposition" value="attachment; filename=myexcel.xls">
 	<cfcontent type="application/msexcel" variable="#spreadsheetReadBinary(s)#" reset="true">

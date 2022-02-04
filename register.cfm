@@ -9,7 +9,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-data">
-                                  <form method="post" name="registerForm" action="" onsubmit="return validateRegisterForm()">
+                                  <form method="post" name="registerForm" action="cfc/register.cfc?method=insertData" onsubmit="return validateRegisterForm()">
                                       <div class="text-center d-flex flex-column"> <h1>Sign Up</h1></div>
                                       <div class="forms-inputs mb-5"><input name="fullName" class="text-field" autocomplete="off" type="text" placeholder="Full Name" />
                                       </div>
@@ -30,8 +30,4 @@
                 </div>
             </div>
         </div>  
-<cfif structKeyExists(form, "registerButton")>
-    <cfinvoke component="cfc.register"  method="insertData" returnvariable="message">
-    <cfoutput>#message#</cfoutput>
-</cfif>
 <cfinclude  template = "include/footer.cfm"  runOnce = "true">
