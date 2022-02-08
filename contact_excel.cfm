@@ -10,7 +10,7 @@
 		<cfset querySetCell(q, "DOB", userData.dob)>
 		<cfset querySetCell(q, "Email", userData.email)>
 		<cfset querySetCell(q, "Phone", userData.phone)>
-    </cfoutput>>
+    </cfoutput>
 	
 	<cfset filename = expandPath("./myexcel.xls")>
 	<cfset s = spreadsheetNew()>

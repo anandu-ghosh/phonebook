@@ -21,7 +21,7 @@
                                     </form>    
                                 </div>
                                 <div class="success-data">
-                                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">Or Sign in Using <br><form method="post"> <button  onClick="FbLogin()" name="face-btn" class="social-btn"><i class="fab fa-facebook"></i></button> <button type="submit" name="google-btn" class="social-btn"><i class="fab fa-google-plus"></i></button></form><br>
+                                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">Or Sign in Using <br><form method="post" action="cfc/google.cfc?method=googleLogin"> <button  onClick="FbLogin()" name="face-btn" class="social-btn"><i class="fab fa-facebook"></i></button> <button type="submit" name="google-btn" class="social-btn"><i class="fab fa-google-plus"></i></button></form><br>
                                     Don't have an account? <a href="register.cfm">Register Here</a>
                                     </span> </div>
                                 </div>
@@ -32,10 +32,7 @@
             </div>
         </div>
 
-       
-        <cfif structKeyExists(form, "google-btn")>
-            <cflocation  url="google.cfm">           
-        </cfif>
+    
 
 <script>
   window.fbAsyncInit = function() {
