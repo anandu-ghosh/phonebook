@@ -29,10 +29,26 @@
         <cfelse>
             <cfset img = "">
         </cfif>
-    
-            <cfset CreateContact = entityNew("contacts", {UserId : Session.userId, Title : arguments.title, FirstName : arguments.fname, LastName : arguments.lname, Gender : arguments.gender, DateBirth : arguments.dob, Image : img, Address : arguments.address, Street : arguments.street, Email : arguments.email, Phone : arguments.phone})>
-            <cfset entitySave(CreateContact)>  
+        <cfquery datasource="coldfusion" result="result">
+                INSERT INTO contact_book_user (user_id, title, fname, lname, gender, dob, image, address, street, email, phone) VALUES (
+                    <cfqueryparam value="#Session.userId#" cfsqltype="CF_SQL_INTEGER">,
+                    <cfqueryparam value="#arguments.title#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.fname#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.lname#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.gender#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.dob#" cfsqltype="cf_sql_date">,
+                    <cfqueryparam value="#img#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.address#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.street#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.email#" cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value="#arguments.phone#" cfsqltype="cf_sql_varchar">)
+        </cfquery>
+        <cfif result.generatedkey>
             <cflocation url="../panel.cfm" addtoken="no">
+        <cfelse>
+            <cfset variable = "Please try after some time...">
+            <cfreturn variable>
+        </cfif>
     </cffunction>
 
     <cffunction  name="selectContact" access="public">
