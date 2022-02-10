@@ -6,7 +6,7 @@
             scope="https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile"
             secretkey="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" 
             result="res"  
-            redirecturi="http://127.0.0.1:8500/phonebook/google.cfm">
+            redirecturi="http://127.0.0.1:8500/phonebook/cfc/google.cfc?method=googleLogin">
 
             <cfquery  datasource="coldfusion" result="outputquery" name="checkquery">
                 SELECT * FROM contact_book_user WHERE email=<cfqueryparam CFSQLType="cf_sql_varchar" value="#res.other.email#">
